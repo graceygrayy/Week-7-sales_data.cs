@@ -63,3 +63,29 @@ plt.title("Quantity vs Revenue")
 plt.xlabel("Quantity Sold")
 plt.ylabel("Revenue ($)")
 plt.show()
+
+# Save results to a text file
+with open("sales_summary.txt", "w") as f:
+    f.write(f"Total Revenue: {total_revenue}\n")
+    f.write(f"Best-Selling Product: {best_product} ({best_quantity} units sold)\n")
+    f.write(f"Highest Sales Day: {best_day} (${best_day_revenue})\n")
+
+# ---- STEP 2: Visualizations ----
+import matplotlib.pyplot as plt
+
+# Bar chart: total revenue by product
+product_revenue = data.groupby("Product")["Revenue ($)"].sum()
+product_revenue.plot(kind="bar", title="Revenue by Product")
+plt.ylabel("Revenue ($)")
+plt.savefig("product_revenue_chart.png")   # saves chart as PNG
+plt.close()
+
+# Line chart: revenue over time
+daily_revenue = data.groupby("Date")["Revenue ($)"].sum()
+daily_revenue.plot(kind="line", marker="o", title="Revenue Over Time")
+plt.ylabel("Revenue ($)")
+plt.savefig("daily_revenue_chart.png")   # saves chart as PNG
+plt.close()
+
+# Print results in terminal
+print("✅ Analysis Complete! Results saved in sales_summary.txt")
