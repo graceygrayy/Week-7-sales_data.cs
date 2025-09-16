@@ -29,3 +29,37 @@ data.groupby("Date")["Revenue ($)"].sum().plot(kind="bar", title="Revenue by Dat
 plt.xlabel("Date")
 plt.ylabel("Revenue ($)")
 plt.show()
+
+import matplotlib.pyplot as plt
+
+# 1. Line Chart: Revenue over time
+plt.figure(figsize=(6,4))
+df.groupby("Date")["Revenue"].sum().plot(kind="line", marker="o")
+plt.title("Revenue Over Time")
+plt.xlabel("Date")
+plt.ylabel("Total Revenue ($)")
+plt.show()
+
+# 2. Bar Chart: Average revenue per product
+plt.figure(figsize=(6,4))
+df.groupby("Product")["Revenue"].mean().plot(kind="bar", color="skyblue")
+plt.title("Average Revenue per Product")
+plt.xlabel("Product")
+plt.ylabel("Average Revenue ($)")
+plt.show()
+
+# 3. Histogram: Distribution of Quantity
+plt.figure(figsize=(6,4))
+df["Quantity"].plot(kind="hist", bins=10, color="lightgreen", edgecolor="black")
+plt.title("Distribution of Quantity Sold")
+plt.xlabel("Quantity")
+plt.ylabel("Frequency")
+plt.show()
+
+# 4. Scatter Plot: Quantity vs Revenue
+plt.figure(figsize=(6,4))
+plt.scatter(df["Quantity"], df["Revenue"], color="orange")
+plt.title("Quantity vs Revenue")
+plt.xlabel("Quantity Sold")
+plt.ylabel("Revenue ($)")
+plt.show()
